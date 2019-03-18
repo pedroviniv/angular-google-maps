@@ -1,7 +1,7 @@
 import { AfterContentInit, ContentChildren, Directive, EventEmitter, OnChanges, OnDestroy, QueryList, SimpleChanges, Input, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { PolyMouseEvent } from '../services/google-maps-types';
+import { PolyMouseEvent, IconSequence } from '../services/google-maps-types';
 import { PolylineManager } from '../services/managers/polyline-manager';
 import { AgmPolylinePoint } from './polyline-point';
 
@@ -88,6 +88,8 @@ export class AgmPolyline implements OnDestroy, OnChanges, AfterContentInit {
    */
   @Input() zIndex: number;
 
+  @Input() icons : Array<IconSequence>;
+
   /**
    * This event is fired when the DOM click event is fired on the Polyline.
    */
@@ -150,7 +152,7 @@ export class AgmPolyline implements OnDestroy, OnChanges, AfterContentInit {
 
   private static _polylineOptionsAttributes: Array<string> = [
     'draggable', 'editable', 'visible', 'geodesic', 'strokeColor', 'strokeOpacity', 'strokeWeight',
-    'zIndex'
+    'zIndex', 'icons',
   ];
 
   private _id: string;
